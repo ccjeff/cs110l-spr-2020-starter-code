@@ -73,12 +73,16 @@ fn main() {
     for _ in 0..secret_word.len() {
         display_word.push('_');
     }
-    // Uncomment for debugging:
     println!("random word: {}", secret_word);
     let mut round = 0;
     let mut correct_guess = 0;
     while (round < NUM_INCORRECT_GUESSES) && (correct_guess < secret_word.len()) {
         let guessed = get_char();
+        let guessed_char: char = guessed.chars().nth(0).unwrap();
+        if display_word.contains(&guessed_char) {
+            println!("You already guessed that letter!");
+            continue;
+        }
         let matchpts = check_match(&secret_word, &guessed);
         if matchpts.len() == 0 {
             println!("Sorry, no match for {}", guessed);
