@@ -88,7 +88,7 @@ fn main() {
             println!("Sorry, no match for {}", guessed);
             round += 1;
         } else {
-            correct_guess += 1;
+            correct_guess += matchpts.len();
             println!("Match found for {}", guessed);
             for i in matchpts {
                 display_word[i as usize] = secret_word_chars[i as usize];
