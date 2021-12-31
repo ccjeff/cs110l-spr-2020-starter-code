@@ -94,3 +94,22 @@ impl <T: PartialEq> PartialEq for Node<T> {
         self.value == other.value
     }
 }
+
+impl <T: PartialEq> PartialEq for LinkedList<T> {
+    fn eq(&self, other: &Self) -> bool {
+        let mut current = self.head.clone();
+        let mut other_current = other.head.clone();
+        while let Some(node) = current {
+            if let Some(other_node) = other_current {
+                if node.value != other_node.value {
+                    return false;
+                }
+                current = node.next.clone();
+                other_current = other_node.next.clone();
+            } else {
+                return false;
+            }
+        }
+        true
+    }
+}
